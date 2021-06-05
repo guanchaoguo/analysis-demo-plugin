@@ -1,1 +1,1 @@
-# analysis-rockstone-plugin
+# analysis-demo-plugin
