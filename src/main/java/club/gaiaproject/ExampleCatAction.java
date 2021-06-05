@@ -27,8 +27,12 @@ import org.elasticsearch.rest.RestRequest;
 import org.elasticsearch.rest.action.cat.AbstractCatAction;
 import org.elasticsearch.rest.action.cat.RestTable;
 
+import java.util.List;
+import java.util.Arrays;
+
 import static org.elasticsearch.rest.RestRequest.Method.GET;
 import static org.elasticsearch.rest.RestRequest.Method.POST;
+
 
 /**
  * Example of adding a cat action with a plugin.
@@ -36,14 +40,20 @@ import static org.elasticsearch.rest.RestRequest.Method.POST;
 public class ExampleCatAction extends AbstractCatAction {
 
     public ExampleCatAction(final Settings settings, final RestController controller) {
-        super(settings);
-        controller.registerHandler(GET, "/_cat/example", this);
-        controller.registerHandler(POST, "/_cat/example", this);
+        super();
+        controller.registerHandler(this);
     }
 
     @Override
     public String getName() {
         return "rest_handler_cat_example";
+    }
+
+    @Override
+    public List<Route> routes() {
+        return Arrays.asList(
+                new Route(GET, "/_cat/example"),
+                new Route(POST, "/_cat/example"));
     }
 
     @Override

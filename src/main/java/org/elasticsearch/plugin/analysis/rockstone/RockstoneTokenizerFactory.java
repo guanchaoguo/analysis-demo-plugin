@@ -17,7 +17,7 @@ public class RockstoneTokenizerFactory extends AbstractTokenizerFactory {
     private Configuration configuration;
 
     public RockstoneTokenizerFactory(IndexSettings indexSettings, Environment environment, String name, Settings settings) {
-        super(indexSettings, settings);
+        super(indexSettings, settings, name);
         this.configuration = new Configuration(environment, settings);
     }
 
